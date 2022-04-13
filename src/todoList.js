@@ -26,7 +26,7 @@ export const todoList = (() => {
 		});
 	}
 
-	// function changeItem(id, newItem) {
+	// function changeItem(id, itemChanges) {   //item changes should be a regular item but without ID
 	// 	const item = todoListArray.find((element) => {
 	// 		return element.id == id;
 	// 	});
