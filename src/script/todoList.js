@@ -1,4 +1,3 @@
-import { createTodoItem } from './todoItem';
 export const todoList = (() => {
 	const todoListArray = [];
 
@@ -26,16 +25,25 @@ export const todoList = (() => {
 		});
 	}
 
-	// function changeItem(id, itemChanges) {   //item changes should be a regular item but without ID
-	// 	const item = todoListArray.find((element) => {
-	// 		return element.id == id;
-	// 	});
-
-	// }
+	function changeItem(id, itemChanges) {
+		const itemIndex = todoListArray.findIndex((element) => {
+			return element.id == id;
+		});
+		const item = todoListArray[itemIndex];
+		if ('id' in itemChanges) delete itemChanges.id;
+		todoListArray[itemIndex] = { ...item, ...itemChanges };
+	}
 
 	function getList() {
 		return todoListArray;
 	}
 
-	return { addItem, deleteItem, getList, markComplete, getItembyId };
+	return {
+		addItem,
+		deleteItem,
+		getList,
+		markComplete,
+		getItembyId,
+		changeItem,
+	};
 })();

@@ -1,5 +1,5 @@
-import { todoList } from './todoList';
-import { createTodoItem } from './todoItem';
+import { todoList } from './script/todoList';
+import { createTodoItem } from './script/todoItem';
 
 let item = createTodoItem({
 	title: 'Title1',
@@ -8,6 +8,7 @@ let item = createTodoItem({
 	priority: 'low',
 	dueDate: new Date(1995, 11, 17),
 });
+item.id = 'id1';
 todoList.addItem(item);
 
 item = createTodoItem({
@@ -26,6 +27,3 @@ item = createTodoItem({
 	priority: 'med',
 	dueDate: new Date(2125, 11, 17),
 });
-todoList.addItem(item);
-
-console.log(todoList.getList());
