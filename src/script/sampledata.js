@@ -36,7 +36,7 @@ export default () => {
 		createTodoItem({
 			title: 'Clean dishes',
 			category: 'Home Tasks',
-			descr: 'Dirty plates are right there',
+			descr: 'Dirty plates will be right there...again!',
 			priority: 'high',
 			dueDate: addDays(new Date(), 1),
 		})
