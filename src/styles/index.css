@@ -1,4 +1,4 @@
-.app-container {
+.category-container {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
@@ -6,4 +6,10 @@
 
 .todo-card {
 	background-color: azure;
+}
+
+.todo-card .card-delete {
+	width: 20px;
+	height: 20px;
+	background-color: red;
 }

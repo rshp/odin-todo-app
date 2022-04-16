@@ -1,6 +1,7 @@
 import { pubsubAdapter } from './pubsubAdapter';
 import { createTodoItem } from './todoItem';
 import { addDays } from 'date-fns';
+import addHours from 'date-fns/addHours';
 export default () => {
 	pubsubAdapter.publishNewItem(
 		createTodoItem({
@@ -8,7 +9,7 @@ export default () => {
 			category: 'Home Tasks',
 			descr: 'Dirty plates are right there',
 			priority: 'high',
-			dueDate: new Date(),
+			dueDate: addHours(new Date(), 2),
 		})
 	);
 
@@ -158,7 +159,7 @@ export default () => {
 			category: 'Sport',
 			descr: '',
 			priority: 'low',
-			dueDate: addDays(new Date(), 2),
+			dueDate: addDays(new Date(), -1),
 		})
 	);
 

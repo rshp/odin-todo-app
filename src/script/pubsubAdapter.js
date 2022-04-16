@@ -1,5 +1,6 @@
 import PubSub from 'pubsub-js';
 import { todoList } from './todoList';
+import { render } from './render';
 export const pubsubAdapter = (() => {
 	const NEW_ITEM = 'new item topic';
 	const DELETE_ITEM = 'delete item topic';
@@ -7,9 +8,11 @@ export const pubsubAdapter = (() => {
 
 	const newItemSubscriber = function (topic, item) {
 		todoList.addItem(item);
+		render.newItem(item);
 	};
 	const deleteItemSubscriber = function (topic, itemId) {
 		todoList.deleteItem(itemId);
+		render.deleteItem(itemId);
 	};
 	const updateItemSubscriber = function (topic, data) {
 		todoList.changeItem(data.id, data.changes);

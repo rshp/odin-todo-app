@@ -1,11 +1,37 @@
-import PubSub from 'pubsub-js';
 import TodoCard from './todoCard';
-export default () => {
+import endOfToday from 'date-fns/endOfToday';
+import isBefore from 'date-fns/isBefore';
+import isAfter from 'date-fns/isAfter';
+import isFuture from 'date-fns/isFuture';
+import isPast from 'date-fns/isPast';
+import endOfWeek from 'date-fns/endOfWeek';
+export const render = (() => {
 	const timeCategories = [
-		{ displayName: 'Today' },
-		{ displayName: 'This Week' },
-		{ displayName: 'Later' },
-		{ displayName: 'Overdue' },
+		{
+			displayName: 'Today',
+			filter: (date) => {
+				return isFuture(date) && isBefore(date, endOfToday());
+			},
+		},
+		{
+			displayName: 'This Week',
+			filter: (date) => {
+				return isFuture(date) && isBefore(date, endOfWeek(new Date()));
+			},
+		},
+		{
+			displayName: 'Later',
+			filter: (date) => {
+				return isAfter(date, endOfWeek(new Date()));
+			},
+		},
+		{
+			displayName: 'Overdue',
+			filter: (date) => {
+				return isPast(date);
+			},
+		},
+		{ displayName: 'No date', filter: () => {} },
 	];
 
 	let taskCategories = [];
@@ -21,16 +47,31 @@ export default () => {
 	appContainer.appendChild(tasksByTimeContainer);
 	appContainer.appendChild(tasksByCategoriesContainer);
 
-	timeCategories.forEach((category) => {
+	timeCategories.forEach((category, index) => {
 		const catDiv = document.createElement('div');
-		catDiv.classList.add('category-name');
+		catDiv.classList.add('category-container');
+		timeCategories[index].catDiv = catDiv;
+		const catTitle = document.createElement('p');
+		catTitle.textContent = category.displayName;
+		catTitle.classList.add('category-title');
+		catDiv.appendChild(catTitle);
 		tasksByCategoriesContainer.appendChild(catDiv);
 	});
+	console.log(timeCategories);
 
-	function renderNewItem(topic, item) {
-		const cardDiv = new TodoCard(item);
-		appContainer.appendChild(cardDiv);
+	function newItem(item) {
+		timeCategories.forEach((category) => {
+			const cardDiv = new TodoCard(item);
+			if (category.filter(item.dueDate))
+				category.catDiv.appendChild(cardDiv);
+		});
 	}
 
-	PubSub.subscribe('new item topic', renderNewItem);
-};
+	function deleteItem(itemId) {
+		document
+			.querySelectorAll(`[data-id='${itemId}']`)
+			.forEach((element) => element.remove());
+	}
+	function updateItem(itemId, changes) {}
+	return { newItem, deleteItem, updateItem };
+})();

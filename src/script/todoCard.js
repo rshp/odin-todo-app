@@ -1,8 +1,10 @@
 import { format } from 'date-fns';
+import { pubsubAdapter } from './pubsubAdapter';
 export default class TodoCard {
 	constructor(item) {
 		const cardDiv = document.createElement('div');
 		cardDiv.classList.add('todo-card');
+		cardDiv.dataset.id = item.id;
 
 		const cardTitle = document.createElement('div');
 		cardTitle.classList.add('card-title');
@@ -37,6 +39,13 @@ export default class TodoCard {
 		cardDiv.appendChild(cardPrioriry);
 		cardDiv.appendChild(cardDelete);
 		cardDiv.appendChild(cardDescr);
+
+		cardDiv.addEventListener('click', cardEventHandler);
+
+		function cardEventHandler(e) {
+			if (e.target.classList.contains('card-delete'))
+				pubsubAdapter.publishDeleteItem(item.id);
+		}
 
 		return cardDiv;
 	}
