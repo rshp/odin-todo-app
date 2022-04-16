@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import { pubsubAdapter } from './pubsubAdapter';
+import isValid from 'date-fns/isValid';
 export default class TodoCard {
 	constructor(item) {
 		const cardDiv = document.createElement('div');
@@ -24,7 +25,9 @@ export default class TodoCard {
 
 		const cardDueDate = document.createElement('div');
 		cardDueDate.classList.add('card-date');
-		cardDueDate.textContent = format(item.dueDate, 'dd/MM');
+		cardDueDate.textContent = isValid(item.dueDate)
+			? format(item.dueDate, 'dd/MM')
+			: item.dueDate;
 
 		const cardPrioriry = document.createElement('div');
 		cardPrioriry.classList.add('card-priority');

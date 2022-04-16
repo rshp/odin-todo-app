@@ -5,33 +5,43 @@ import isAfter from 'date-fns/isAfter';
 import isFuture from 'date-fns/isFuture';
 import isPast from 'date-fns/isPast';
 import endOfWeek from 'date-fns/endOfWeek';
+import isValid from 'date-fns/isValid';
 export const render = (() => {
 	const timeCategories = [
 		{
 			displayName: 'Today',
 			filter: (date) => {
+				if (!isValid(date)) return false;
 				return isFuture(date) && isBefore(date, endOfToday());
 			},
 		},
 		{
 			displayName: 'This Week',
 			filter: (date) => {
+				if (!isValid(date)) return false;
 				return isFuture(date) && isBefore(date, endOfWeek(new Date()));
 			},
 		},
 		{
 			displayName: 'Later',
 			filter: (date) => {
+				if (!isValid(date)) return false;
 				return isAfter(date, endOfWeek(new Date()));
 			},
 		},
 		{
 			displayName: 'Overdue',
 			filter: (date) => {
+				if (!isValid(date)) return false;
 				return isPast(date);
 			},
 		},
-		{ displayName: 'No date', filter: () => {} },
+		{
+			displayName: 'No date',
+			filter: (date) => {
+				return !isValid(date);
+			},
+		},
 	];
 
 	let taskCategories = [];

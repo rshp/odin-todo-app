@@ -202,4 +202,24 @@ export default () => {
 			dueDate: addDays(new Date(), 2),
 		})
 	);
+
+	pubsubAdapter.publishNewItem(
+		createTodoItem({
+			title: 'Do morning exersize',
+			category: 'Health',
+			descr: '',
+			priority: 'med',
+			dueDate: '',
+		})
+	);
+
+	pubsubAdapter.publishNewItem(
+		createTodoItem({
+			title: 'Clean sink!!!111',
+			category: 'Home Tasks',
+			descr: '',
+			priority: 'med',
+			dueDate: '',
+		})
+	);
 };
