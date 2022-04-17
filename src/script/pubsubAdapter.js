@@ -16,6 +16,7 @@ export const pubsubAdapter = (() => {
 	};
 	const updateItemSubscriber = function (topic, data) {
 		todoList.changeItem(data.item, data.changes);
+		render.updateItem(data.item, data.changes);
 	};
 
 	PubSub.subscribe(NEW_ITEM, newItemSubscriber);

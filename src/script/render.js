@@ -20,7 +20,9 @@ export const render = (() => {
 			.forEach((element) => element.remove());
 	}
 	function updateItem(item, changes) {
-		const updatedItem = {};
+		deleteItem(item.id);
+		const updatedItem = { ...item, ...changes };
+		newItem(updatedItem);
 	}
 	return { newItem, deleteItem, updateItem };
 })();

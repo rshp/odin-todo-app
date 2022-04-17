@@ -21,6 +21,7 @@ export default class TodoCard {
 
 		const cardStatus = document.createElement('div');
 		cardStatus.classList.add('card-status');
+		if (item.completed) cardStatus.classList.toggle('status-complete');
 		cardStatus.textContent = item.completed;
 
 		const cardDueDate = document.createElement('div');
@@ -48,6 +49,12 @@ export default class TodoCard {
 		function cardEventHandler(e) {
 			if (e.target.classList.contains('card-delete'))
 				pubsubAdapter.publishDeleteItem(item.id);
+
+			if (e.target.classList.contains('card-status')) {
+				if (item.completed)
+					pubsubAdapter.publishUpdateItem(item, { completed: false });
+				else pubsubAdapter.publishUpdateItem(item, { completed: true });
+			}
 		}
 
 		return cardDiv;

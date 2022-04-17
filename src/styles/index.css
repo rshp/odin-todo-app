@@ -13,3 +13,11 @@
 	height: 20px;
 	background-color: red;
 }
+
+.todo-card .card-status {
+	background-color: bisque;
+}
+
+.todo-card .card-status.status-complete {
+	background-color: lightgreen;
+}
