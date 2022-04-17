@@ -5,6 +5,7 @@ import isFuture from 'date-fns/isFuture';
 import isPast from 'date-fns/isPast';
 import endOfWeek from 'date-fns/endOfWeek';
 import isValid from 'date-fns/isValid';
+import parseISO from 'date-fns/parseISO';
 import TodoCard from './todoCard';
 export const sortIntoTimeCategories = (() => {
 	let appContainer = null;
@@ -54,8 +55,33 @@ export const sortIntoTimeCategories = (() => {
 		timeCategories.forEach((category) => {
 			const cardDiv = new TodoCard(item);
 			if (category.filter(item.dueDate))
-				category.catDiv.appendChild(cardDiv);
+				// category.catDiv.appendChild(cardDiv);
+				appendByDate(category.catDiv, cardDiv, item);
 		});
+	}
+
+	function appendByDate(parentElement, cardDiv, item) {
+		// console.log(parentElement.children);
+		if (parentElement.children.length < 2) {
+			parentElement.appendChild(cardDiv);
+			return;
+		}
+		Array.from(parentElement.children).forEach((element) => {
+			if (element.classList.contains('todo-card')) {
+				if (
+					isBefore(
+						isValid(item.dueDate)
+							? item.dueDate
+							: new Date(1, 1, 2100),
+						parseISO(element.dataset.date)
+					)
+				) {
+					parentElement.insertBefore(cardDiv, element);
+					return;
+				}
+			}
+		});
+		parentElement.appendChild(cardDiv);
 	}
 
 	function setupCategories() {

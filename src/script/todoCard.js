@@ -1,11 +1,16 @@
 import { format } from 'date-fns';
+import formatISO from 'date-fns/formatISO';
 import { pubsubAdapter } from './pubsubAdapter';
 import isValid from 'date-fns/isValid';
+import { cardUpdateModal } from './cardUpdateModal';
 export default class TodoCard {
 	constructor(item) {
 		const cardDiv = document.createElement('div');
 		cardDiv.classList.add('todo-card');
 		cardDiv.dataset.id = item.id;
+		cardDiv.dataset.date = isValid(item.dueDate)
+			? formatISO(item.dueDate)
+			: formatISO(new Date(1, 1, 2100));
 
 		const cardTitle = document.createElement('div');
 		cardTitle.classList.add('card-title');
@@ -49,14 +54,12 @@ export default class TodoCard {
 		function cardEventHandler(e) {
 			if (e.target.classList.contains('card-delete'))
 				pubsubAdapter.publishDeleteItem(item.id);
-
-			if (e.target.classList.contains('card-status')) {
+			else if (e.target.classList.contains('card-status')) {
 				if (item.completed)
 					pubsubAdapter.publishUpdateItem(item, { completed: false });
 				else pubsubAdapter.publishUpdateItem(item, { completed: true });
-			}
+			} else cardUpdateModal(item);
 		}
-
 		return cardDiv;
 	}
 }
