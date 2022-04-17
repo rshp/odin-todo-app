@@ -19,6 +19,8 @@ export const render = (() => {
 			.querySelectorAll(`[data-id='${itemId}']`)
 			.forEach((element) => element.remove());
 	}
-	function updateItem(itemId, changes) {}
+	function updateItem(item, changes) {
+		const updatedItem = {};
+	}
 	return { newItem, deleteItem, updateItem };
 })();

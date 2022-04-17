@@ -25,12 +25,10 @@ export const todoList = (() => {
 		});
 	}
 
-	function changeItem(id, itemChanges) {
+	function changeItem(item, itemChanges) {
 		const itemIndex = todoListArray.findIndex((element) => {
-			return element.id == id;
+			return element.id == item.id;
 		});
-		const item = todoListArray[itemIndex];
-		if ('id' in itemChanges) delete itemChanges.id;
 		todoListArray[itemIndex] = { ...item, ...itemChanges };
 	}
 

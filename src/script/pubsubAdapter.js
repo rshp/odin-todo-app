@@ -15,7 +15,7 @@ export const pubsubAdapter = (() => {
 		render.deleteItem(itemId);
 	};
 	const updateItemSubscriber = function (topic, data) {
-		todoList.changeItem(data.id, data.changes);
+		todoList.changeItem(data.item, data.changes);
 	};
 
 	PubSub.subscribe(NEW_ITEM, newItemSubscriber);
@@ -30,8 +30,8 @@ export const pubsubAdapter = (() => {
 		PubSub.publish(DELETE_ITEM, itemId);
 	};
 
-	const publishUpdateItem = function (itemId, itemChanges) {
-		PubSub.publish(UPDATE_ITEM, { id: itemId, changes: itemChanges });
+	const publishUpdateItem = function (item, itemChanges) {
+		PubSub.publish(UPDATE_ITEM, { item: item, changes: itemChanges });
 	};
 
 	return { publishNewItem, publishDeleteItem, publishUpdateItem };
