@@ -7,6 +7,7 @@ import endOfWeek from 'date-fns/endOfWeek';
 import isValid from 'date-fns/isValid';
 import { appendByDate } from './appendByDate';
 import TodoCard from './todoCard';
+import { categoryTitleEventHandler } from './categoryTitleEventHandler';
 export const sortIntoTimeCategories = (() => {
 	let appContainer = null;
 
@@ -69,6 +70,7 @@ export const sortIntoTimeCategories = (() => {
 			catDiv.classList.add('category-container');
 			timeCategories[index].catDiv = catDiv;
 			const catTitle = document.createElement('p');
+			catTitle.addEventListener('click', categoryTitleEventHandler);
 			catTitle.textContent = category.displayName;
 			catTitle.classList.add('category-title');
 			catDiv.appendChild(catTitle);

@@ -1,5 +1,6 @@
 import TodoCard from './todoCard';
 import { appendByDate } from './appendByDate';
+import { categoryTitleEventHandler } from './categoryTitleEventHandler';
 export const sortIntoCategories = (() => {
 	let appContainer = null;
 	function setAppContainer(container) {
@@ -11,6 +12,7 @@ export const sortIntoCategories = (() => {
 	tasksByCategoriesContainer.classList.add('tasks-by-category');
 
 	function sortItems(item) {
+		const cardDiv = new TodoCard(item);
 		if (
 			!taskCategories.some((element) => {
 				return element.displayName == item.category;
@@ -22,16 +24,12 @@ export const sortIntoCategories = (() => {
 			const catTitle = document.createElement('p');
 			catTitle.textContent = item.category;
 			catTitle.classList.add('category-title');
+			catTitle.addEventListener('click', categoryTitleEventHandler);
 			catDiv.appendChild(catTitle);
 			taskCategories.push({ displayName: item.category, catDiv: catDiv });
 			tasksByCategoriesContainer.appendChild(catDiv);
-			const cardDiv = new TodoCard(item);
 			catDiv.appendChild(cardDiv);
 		} else {
-			const cardDiv = new TodoCard(item);
-			// document
-			// 	.querySelector(`[data-category='${item.category}']`)
-			// 	.appendChild(cardDiv);
 			appendByDate(
 				document.querySelector(`[data-category='${item.category}']`),
 				cardDiv,
