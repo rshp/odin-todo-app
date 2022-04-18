@@ -1,4 +1,5 @@
 import TodoCard from './todoCard';
+import { appendByDate } from './appendByDate';
 export const sortIntoCategories = (() => {
 	let appContainer = null;
 	function setAppContainer(container) {
@@ -28,9 +29,14 @@ export const sortIntoCategories = (() => {
 			catDiv.appendChild(cardDiv);
 		} else {
 			const cardDiv = new TodoCard(item);
-			document
-				.querySelector(`[data-category='${item.category}']`)
-				.appendChild(cardDiv);
+			// document
+			// 	.querySelector(`[data-category='${item.category}']`)
+			// 	.appendChild(cardDiv);
+			appendByDate(
+				document.querySelector(`[data-category='${item.category}']`),
+				cardDiv,
+				item
+			);
 		}
 	}
 
