@@ -1,0 +1,40 @@
+html:
+  -header, footer, nav, main
+  -images,links
+  -forms, sections, legend
+  -forms validation
+  -tables
+
+css:
+  -css reset
+  -fonts and typefaces
+  -variables
+  -css organisation
+  -layout, flexbox, grid, media queries
+  -styling elements, svg
+  -transitions
+  -animations
+
+js:
+  -objects
+    -builder pattern
+    -factory functions and classes
+    -SOLID principles
+  -patterns
+    -separation of concerns
+    -module pattern
+    -observer pattern
+    -imports/exports
+
+versioning
+  -git
+  -github
+
+TDD
+  -Jest
+
+bundler:
+  -static imports of styles/assets
+  -dynamic imports of styles/assets
+  -name hashing
+  -tree shaking
