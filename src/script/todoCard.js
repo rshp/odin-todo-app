@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import formatISO from 'date-fns/formatISO';
 import { pubsubAdapter } from './pubsubAdapter';
 import isValid from 'date-fns/isValid';
-import { cardUpdateModal } from './cardUpdateModal';
+import { cardModal } from './cardModal';
 export default class TodoCard {
 	constructor(item) {
 		const cardDiv = document.createElement('div');
@@ -58,7 +58,7 @@ export default class TodoCard {
 				if (item.completed)
 					pubsubAdapter.publishUpdateItem(item, { completed: false });
 				else pubsubAdapter.publishUpdateItem(item, { completed: true });
-			} else cardUpdateModal(item);
+			}
 		}
 		return cardDiv;
 	}
