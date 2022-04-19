@@ -8,22 +8,58 @@ export const cardModal = (() => {
 		modalContainer.classList.add('modal-container');
 		modalWrapper.appendChild(modalContainer);
 
-		const modalTitle = document.createElement('p');
-		modalTitle.classList.add('modal-title');
-		modalTitle.textContent = 'Modify task';
-		modalContainer.appendChild(modalTitle);
-
-		let entryInnerHTML = `
-  <div class="form-entry">
+		let containerInnerHTML = `
+		<p class"modal-title">${1}</p>
+		<div class="form-entry">
     <label for="title">Title<span class="required">*</span></label>
     <input
       type="text"
       name="title"
       id="todo-title"
-      placeholder=" "
+      placeholder=""
       required
     />
-  </div>`;
+  	</div>
+
+		<div class="form-entry">
+    <label for="category">Category</label>
+    <input
+      type="text"
+      name="category"
+      id="todo-category"
+      placeholder=""
+    />
+  	</div>
+	
+		<div class="form-entry">
+    <label for="descr">Category</label>
+    <input
+      type="text"
+      name="descr"
+      id="todo-descr"
+      placeholder=""
+    />
+  	</div>
+		
+		<div class="form-entry">
+		<label for="lo-option" class="priority-radio">
+			<input type="radio" id="lo-option" name="selector" tabindex="1">
+			<span>Low</span>
+		</label>
+		<label for="med-option" class="priority-radio">
+			<input type="radio" id="med-option" name="selector" tabindex="2">
+			<span>Med</span>
+		</label>
+			<label for="hi-option" class="priority-radio">
+			<input type="radio" id="hi-option" name="selector" tabindex="3">
+			<span>High</span>
+		</label>
+	  </div>
+	
+	
+	
+	
+	`;
 		modalContainer.appendChild(createFormEntry(entryInnerHTML));
 
 		function createFormEntry(innerHTML) {
