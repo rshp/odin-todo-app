@@ -21,3 +21,11 @@
 .todo-card .card-status.status-complete {
 	background-color: lightgreen;
 }
+
+/*styling*/
+html,
+body {
+	font-family: 'Open Sans', sans-serif;
+	color: #333;
+	background-color: #f4f4f4;
+}

@@ -9,7 +9,7 @@ export const cardModal = (() => {
 		modalWrapper.appendChild(modalContainer);
 		const placeholderValue = `--placeholder--`;
 		const containerInnerHTML = `
-		<p class"modal-title">${placeholderValue}</p>
+		<h1 class"modal-title">${placeholderValue}</h1>
 		<form>
 		<div class="form-entry">
     <label for="todo-title">Title<span class="required">*</span></label>
@@ -44,8 +44,8 @@ export const cardModal = (() => {
     />
   	</div>
 		
-		<div class="form-entry">
-		<p>Select task priority</p>
+		<div class="form-entry priority-section">
+		<p>Priority<span class="required">*</span></p>
 			<input type="radio" id="lo-option" name="priority-option" checked>
 			<label for="lo-option" class="priority-radio">Low</label>
 		
@@ -63,8 +63,7 @@ export const cardModal = (() => {
 
 		<button type="submit">${placeholderValue}</button>
 	</form>
-	
-		`;
+			`;
 		modalContainer.innerHTML = containerInnerHTML;
 
 		return modalWrapper;
