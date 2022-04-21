@@ -35,8 +35,9 @@ export default class TodoCard {
 			? format(item.dueDate, 'dd/MM')
 			: item.dueDate;
 
-		const cardPrioriry = document.createElement('div');
-		cardPrioriry.classList.add('card-priority');
+		const cardPriority = document.createElement('div');
+		cardPriority.classList.add('card-priority');
+		cardPriority.textContent = item.priority;
 
 		const cardDelete = document.createElement('div');
 		cardDelete.classList.add('card-delete');
@@ -45,7 +46,7 @@ export default class TodoCard {
 		cardDiv.appendChild(cardTitle);
 		cardDiv.appendChild(cardCat);
 		cardDiv.appendChild(cardDueDate);
-		cardDiv.appendChild(cardPrioriry);
+		cardDiv.appendChild(cardPriority);
 		cardDiv.appendChild(cardDelete);
 		cardDiv.appendChild(cardDescr);
 
