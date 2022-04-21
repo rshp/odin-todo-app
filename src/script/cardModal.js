@@ -1,8 +1,10 @@
 import { isValid } from 'date-fns';
 import '../styles/modal.css';
+import { pubsubAdapter } from './pubsubAdapter';
 
 export const cardModal = (() => {
 	const modalWrapper = createBlankModal();
+	let currentItem;
 
 	function getModalWrapper() {
 		return modalWrapper;
@@ -75,6 +77,7 @@ export const cardModal = (() => {
 	}
 
 	function showUpdateItemModal(item) {
+		currentItem = item;
 		modalWrapper.querySelector('.modal-title').innerHTML = 'Task Update';
 		modalWrapper.querySelector('button').textContent = 'Update';
 		modalWrapper.querySelector('#todo-title').value = item.title;
@@ -87,6 +90,40 @@ export const cardModal = (() => {
 			? item.dueDate
 			: null;
 		modalWrapper.style.display = 'flex';
+
+		modalWrapper
+			.querySelector('form')
+			.addEventListener('submit', processFormSubmit);
+	}
+
+	function processFormSubmit(event) {
+		event.preventDefault();
+		const selectedPriority = event.target.querySelector(
+			'input[name="priority-option"]:checked'
+		).id;
+		const itemChanges = {
+			title: event.target.elements['title'].value,
+			category: event.target.elements['category'].value,
+			descr: event.target.elements['descr'].value,
+			priority: selectedPriorityToPriority(selectedPriority),
+			dueDate: new Date(event.target.elements['dueDate'].value),
+		};
+
+		pubsubAdapter.publishUpdateItem(currentItem, itemChanges);
+		modalWrapper.style.display = 'none';
+	}
+
+	function selectedPriorityToPriority(idSelector) {
+		switch (idSelector) {
+			case 'lo-option':
+				return 'low';
+			case 'med-option':
+				return 'med';
+			case 'hi-option':
+				return 'high';
+			default:
+				break;
+		}
 	}
 
 	function setPrioritySelection(item) {
