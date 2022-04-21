@@ -144,5 +144,5 @@ export const cardModal = (() => {
 		modalWrapper.querySelector(prioritySelector).checked = true;
 	}
 
-	return { createBlankModal, showUpdateItemModal, getModalWrapper };
+	return { showUpdateItemModal, getModalWrapper };
 })();
