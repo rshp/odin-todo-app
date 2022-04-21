@@ -1,9 +1,12 @@
 import { sortIntoTimeCategories } from './sortIntoTimeCategories';
 import { sortIntoCategories } from './sortIntoCategories';
+import { cardModal } from './cardModal';
 export const render = (() => {
 	const appContainer = document.createElement('main');
 	appContainer.classList.add('app-container');
 	document.body.appendChild(appContainer);
+	const modalWrapper = cardModal.getModalWrapper();
+	document.body.appendChild(modalWrapper);
 
 	sortIntoTimeCategories.setAppContainer(appContainer);
 	sortIntoCategories.setAppContainer(appContainer);

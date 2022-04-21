@@ -52,14 +52,19 @@ export default class TodoCard {
 		cardDiv.addEventListener('click', cardEventHandler);
 
 		function cardEventHandler(e) {
-			if (e.target.classList.contains('card-delete'))
+			if (e.target.classList.contains('card-delete')) {
 				pubsubAdapter.publishDeleteItem(item.id);
-			else if (e.target.classList.contains('card-status')) {
+				return;
+			}
+			if (e.target.classList.contains('card-status')) {
 				if (item.completed)
 					pubsubAdapter.publishUpdateItem(item, { completed: false });
 				else pubsubAdapter.publishUpdateItem(item, { completed: true });
+				return;
 			}
+			cardModal.showUpdateItemModal(item);
 		}
+
 		return cardDiv;
 	}
 }
