@@ -5,5 +5,5 @@ import render from './script/render';
 import { cardModal } from './script/cardModal';
 sampledata();
 
-const modalWrapper = cardModal.createModal();
+const modalWrapper = cardModal.createBlankModal();
 document.body.appendChild(modalWrapper);

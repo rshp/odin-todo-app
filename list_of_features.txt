@@ -2,12 +2,14 @@ html:
   -header, footer, nav, main
   -images,links
   -forms, sections, legend
-  -forms validation
+  -client forms validation
   -tables
+  -accessibility: semantic elements, alt text, legend, tabindex
 
 css:
   -css reset
   -fonts and typefaces
+  -color scheme
   -variables
   -css organisation
   -layout, flexbox, grid, media queries
