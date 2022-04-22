@@ -2,8 +2,6 @@ import endOfToday from 'date-fns/endOfToday';
 import startOfToday from 'date-fns/startOfToday';
 import isBefore from 'date-fns/isBefore';
 import isAfter from 'date-fns/isAfter';
-import isFuture from 'date-fns/isFuture';
-import isPast from 'date-fns/isPast';
 import endOfWeek from 'date-fns/endOfWeek';
 import isValid from 'date-fns/isValid';
 import { appendByDate } from './appendByDate';
