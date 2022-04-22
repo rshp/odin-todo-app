@@ -38,5 +38,12 @@ export const sortIntoCategories = (() => {
 		}
 	}
 
-	return { setAppContainer, sortItems };
+	function removeCatFromKnownCatList(category) {
+		const catIndex = taskCategories.findIndex((element) => {
+			return element.displayName == category;
+		});
+		taskCategories.splice(catIndex, 1);
+	}
+
+	return { setAppContainer, sortItems, removeCatFromKnownCatList };
 })();

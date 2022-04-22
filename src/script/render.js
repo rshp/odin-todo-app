@@ -24,7 +24,12 @@ export const render = (() => {
 		document
 			.querySelectorAll('.tasks-by-category .category-container')
 			.forEach((container) => {
-				if (container.childElementCount < 2) container.remove();
+				if (container.childElementCount < 2) {
+					sortIntoCategories.removeCatFromKnownCatList(
+						container.dataset.category
+					);
+					container.remove();
+				}
 			});
 	}
 	function updateItem(item, changes) {
