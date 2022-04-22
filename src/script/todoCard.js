@@ -41,7 +41,7 @@ export default class TodoCard {
 		cardDueDate.classList.add('card-date');
 		cardDueDate.textContent = isValid(item.dueDate)
 			? format(item.dueDate, 'dd/MM')
-			: item.dueDate;
+			: '';
 
 		switch (item.priority) {
 			case 'low':
