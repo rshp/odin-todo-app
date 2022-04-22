@@ -1,4 +1,5 @@
 import endOfToday from 'date-fns/endOfToday';
+import startOfToday from 'date-fns/startOfToday';
 import isBefore from 'date-fns/isBefore';
 import isAfter from 'date-fns/isAfter';
 import isFuture from 'date-fns/isFuture';
@@ -20,14 +21,20 @@ export const sortIntoTimeCategories = (() => {
 			displayName: 'Today',
 			filter: (date) => {
 				if (!isValid(date)) return false;
-				return isFuture(date) && isBefore(date, endOfToday());
+				return (
+					isAfter(date, startOfToday()) &&
+					isBefore(date, endOfToday())
+				);
 			},
 		},
 		{
 			displayName: 'This Week',
 			filter: (date) => {
 				if (!isValid(date)) return false;
-				return isFuture(date) && isBefore(date, endOfWeek(new Date()));
+				return (
+					isAfter(date, endOfToday()) &&
+					isBefore(date, endOfWeek(new Date()))
+				);
 			},
 		},
 		{
@@ -41,7 +48,7 @@ export const sortIntoTimeCategories = (() => {
 			displayName: 'Overdue',
 			filter: (date) => {
 				if (!isValid(date)) return false;
-				return isPast(date);
+				return isBefore(date, startOfToday());
 			},
 		},
 		{
