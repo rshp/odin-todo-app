@@ -3,6 +3,9 @@ import isBefore from 'date-fns/isBefore';
 import isAfter from 'date-fns/isAfter';
 import parseISO from 'date-fns/parseISO';
 export function appendByDate(parentElement, cardDiv, item) {
+	if (parentElement.classList.contains('collapsed-category'))
+		cardDiv.classList.add('collapsed-card');
+
 	const existingCards = Array.from(parentElement.children);
 	existingCards.shift(); //remove <p> category title element
 	//For any invalid date assume that it is in the future
