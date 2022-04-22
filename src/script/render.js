@@ -21,6 +21,11 @@ export const render = (() => {
 		document
 			.querySelectorAll(`[data-id='${itemId}']`)
 			.forEach((element) => element.remove());
+		document
+			.querySelectorAll('.tasks-by-category .category-container')
+			.forEach((container) => {
+				if (container.childElementCount < 2) container.remove();
+			});
 	}
 	function updateItem(item, changes) {
 		deleteItem(item.id);
