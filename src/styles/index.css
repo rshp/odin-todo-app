@@ -16,6 +16,25 @@ body {
 	gap: 1rem;
 }
 
+.new-todo-button {
+	align-self: flex-start;
+	padding: 0.48rem;
+	box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.5);
+	cursor: pointer;
+	border: 1px solid #3498db;
+	background-color: #fff;
+	transition: all 146ms ease;
+	font-size: 1rem;
+	border-radius: 3px;
+	color: #3498db;
+}
+
+.new-todo-button:hover {
+	background-color: #3498db;
+	color: #fff;
+	box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+}
+
 .tasks-by-category,
 .tasks-by-time {
 	display: flex;

@@ -5,6 +5,13 @@ export const render = (() => {
 	const appContainer = document.createElement('main');
 	appContainer.classList.add('app-container');
 	document.body.appendChild(appContainer);
+
+	const newTodoButton = document.createElement('button');
+	newTodoButton.classList.add('new-todo-button');
+	newTodoButton.textContent = 'Add Task';
+	newTodoButton.addEventListener('click', cardModal.showNewItemModal);
+	appContainer.appendChild(newTodoButton);
+
 	const modalWrapper = cardModal.getModalWrapper();
 	document.body.appendChild(modalWrapper);
 

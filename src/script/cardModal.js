@@ -1,10 +1,11 @@
 import { isValid } from 'date-fns';
 import '../styles/modal.css';
 import { pubsubAdapter } from './pubsubAdapter';
-
+import { createTodoItem } from './todoItem';
 export const cardModal = (() => {
 	const modalWrapper = createBlankModal();
 	let currentItem;
+	let modalMode;
 
 	function getModalWrapper() {
 		return modalWrapper;
@@ -76,7 +77,18 @@ export const cardModal = (() => {
 		return modalWrapper;
 	}
 
+	function showNewItemModal() {
+		modalMode = 'NEW_ITEM';
+		modalWrapper.querySelector('.modal-title').innerHTML = 'New Task';
+		modalWrapper.querySelector('button').textContent = 'Add';
+		modalWrapper.querySelector('#todo-title').value = '';
+		modalWrapper.querySelector('#todo-category').value = '';
+		modalWrapper.querySelector('#todo-descr').value = '';
+		modalWrapper.style.display = 'flex';
+	}
+
 	function showUpdateItemModal(item) {
+		modalMode = 'UPDATE_ITEM';
 		currentItem = item;
 		modalWrapper.querySelector('.modal-title').innerHTML = 'Task Update';
 		modalWrapper.querySelector('button').textContent = 'Update';
@@ -109,7 +121,15 @@ export const cardModal = (() => {
 			dueDate: new Date(event.target.elements['dueDate'].value),
 		};
 
-		pubsubAdapter.publishUpdateItem(currentItem, itemChanges);
+		switch (modalMode) {
+			case 'NEW_ITEM':
+				pubsubAdapter.publishNewItem(createTodoItem(itemChanges));
+				break;
+			case 'UPDATE_ITEM':
+				pubsubAdapter.publishUpdateItem(currentItem, itemChanges);
+				break;
+		}
+
 		modalWrapper.style.display = 'none';
 	}
 
@@ -144,5 +164,5 @@ export const cardModal = (() => {
 		modalWrapper.querySelector(prioritySelector).checked = true;
 	}
 
-	return { showUpdateItemModal, getModalWrapper };
+	return { showUpdateItemModal, getModalWrapper, showNewItemModal };
 })();
