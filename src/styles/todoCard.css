@@ -13,6 +13,14 @@
 	align-items: center;
 	row-gap: 0.3rem;
 	position: relative;
+	max-height: 300px;
+	transition: max-height 0.2s;
+}
+
+.todo-card.collapsed-card {
+	max-height: 0px;
+	overflow: hidden;
+	transition: max-height 0.2s;
 }
 
 .todo-card:hover {
