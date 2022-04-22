@@ -12,7 +12,7 @@ body {
 	margin-top: 30%;
 	display: flex;
 	justify-content: center;
-	width: 40vw;
+	width: 60vw;
 	gap: 1rem;
 }
 
@@ -20,14 +20,15 @@ body {
 .tasks-by-time {
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
+	gap: 1rem;
 	flex: 1;
 }
 
 .category-container {
 	display: flex;
 	flex-direction: column;
-	gap: 0.3rem;
+	gap: 1rem;
+	z-index: 0;
 }
 
 .category-title {
@@ -35,23 +36,3 @@ body {
 	padding: 0.5rem;
 	background-color: beige;
 }
-
-.todo-card {
-	background-color: azure;
-}
-
-.todo-card .card-delete {
-	width: 20px;
-	height: 20px;
-	background-color: red;
-}
-
-.todo-card .card-status {
-	background-color: bisque;
-}
-
-.todo-card .card-status.status-complete {
-	background-color: lightgreen;
-}
-
-/*styling*/

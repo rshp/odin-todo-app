@@ -1,0 +1,132 @@
+.todo-card {
+	background: rgb(70, 179, 255);
+	background: linear-gradient(
+		90deg,
+		rgba(70, 179, 255, 1) 0%,
+		rgba(148, 205, 255, 1) 4%,
+		rgba(255, 255, 255, 1) 16%,
+		rgba(255, 255, 255, 1) 100%
+	);
+
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	row-gap: 0.3rem;
+	position: relative;
+}
+
+.todo-card:hover {
+	transform: translate(-3px, -3px);
+	transition: all 0.1s;
+}
+
+.todo-card::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	content: '';
+	box-shadow: 0px 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.todo-card:hover::after {
+	box-shadow: 6px 9px 3px 3px rgba(0, 0, 0, 0.2);
+	transition: all 0.1s;
+}
+
+.todo-card::before {
+	position: absolute;
+	top: 0;
+	left: 30%;
+	right: 10%;
+	bottom: 95%;
+	content: '';
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.todo-card.card-priority-low::before {
+	background-color: rgba(0, 106, 255, 0.44);
+}
+
+.todo-card.card-priority-med::before {
+	background-color: rgb(255, 242, 0);
+}
+
+.todo-card.card-priority-high::before {
+	background-color: rgb(255, 187, 0);
+}
+
+.todo-card .card-status {
+	background-color: rgba(255, 255, 255, 0.621);
+	width: 10%;
+	aspect-ratio: 1;
+	align-self: flex-start;
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.todo-card .card-status svg {
+	pointer-events: none;
+	padding: 5px;
+}
+
+.todo-card .card-status.status-complete {
+	background-color: lightgreen;
+}
+
+.todo-card .card-title {
+	width: 70%;
+	padding: 0.3rem;
+	font-size: 1.3rem;
+}
+
+.todo-card .card-cat {
+	width: 20%;
+	text-align: end;
+	padding: 0.3rem;
+	color: rgb(128, 128, 128);
+}
+
+.todo-card .card-date {
+	width: 30%;
+	font-size: 1.3rem;
+	padding-left: 1rem;
+	font-weight: 300;
+}
+
+.todo-card .card-descr {
+	width: 60%;
+	padding: 0.3rem;
+	color: rgb(128, 128, 128);
+	font-size: 0.8rem;
+	font-weight: 600;
+}
+
+.todo-card .card-delete {
+	width: 10%;
+	aspect-ratio: 1;
+	background-color: rgb(255, 73, 73);
+	align-self: flex-end;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 5px;
+	z-index: 2;
+}
+
+.todo-card .card-delete:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+.todo-card .card-delete svg {
+	color: white;
+	width: 100%;
+	pointer-events: none;
+}
+
+/*styling*/
