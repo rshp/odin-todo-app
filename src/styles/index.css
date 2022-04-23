@@ -12,7 +12,7 @@ body {
 .app-container {
 	margin-top: 30%;
 	display: flex;
-	justify-content: center;
+	flex-wrap: wrap;
 	width: 60vw;
 	gap: 1rem;
 }
@@ -28,6 +28,9 @@ body {
 	font-size: 1rem;
 	border-radius: 3px;
 	color: #3498db;
+	margin-right: 90%;
+	white-space: nowrap;
+	width: max-content;
 }
 
 .new-todo-button:hover {
@@ -41,6 +44,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+	min-width: 250px;
 	flex: 1;
 }
 
