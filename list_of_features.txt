@@ -27,6 +27,8 @@ js:
     -module pattern
     -observer pattern
     -imports/exports
+storage:
+  -localStorage
 
 versioning
   -git
