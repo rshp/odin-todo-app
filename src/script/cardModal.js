@@ -85,6 +85,9 @@ export const cardModal = (() => {
 		modalWrapper.querySelector('#todo-category').value = '';
 		modalWrapper.querySelector('#todo-descr').value = '';
 		modalWrapper.style.display = 'flex';
+		modalWrapper
+			.querySelector('form')
+			.addEventListener('submit', processFormSubmit);
 	}
 
 	function showUpdateItemModal(item) {

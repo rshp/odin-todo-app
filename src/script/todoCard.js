@@ -1,5 +1,5 @@
 import '../styles/todoCard.css';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import formatISO from 'date-fns/formatISO';
 import { pubsubAdapter } from './pubsubAdapter';
 import isValid from 'date-fns/isValid';
@@ -11,7 +11,7 @@ export default class TodoCard {
 		cardDiv.dataset.id = item.id;
 		cardDiv.dataset.date = isValid(item.dueDate)
 			? formatISO(item.dueDate)
-			: formatISO(new Date(1, 1, 2100));
+			: formatISO(new Date(2030, 1, 2));
 
 		const cardTitle = document.createElement('div');
 		cardTitle.classList.add('card-title');
@@ -39,10 +39,10 @@ export default class TodoCard {
 
 		const cardDueDate = document.createElement('div');
 		cardDueDate.classList.add('card-date');
-		cardDueDate.textContent = isValid(item.dueDate)
-			? format(item.dueDate, 'dd/MM')
-			: '';
 
+		cardDueDate.textContent = isValid(new Date(item.dueDate))
+			? format(new Date(item.dueDate), 'dd/MM')
+			: '';
 		switch (item.priority) {
 			case 'low':
 				cardDiv.classList.add('card-priority-low');
