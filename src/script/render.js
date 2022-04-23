@@ -1,7 +1,9 @@
 import { sortIntoTimeCategories } from './sortIntoTimeCategories';
 import { sortIntoCategories } from './sortIntoCategories';
 import { cardModal } from './cardModal';
+import addHeader from './header';
 export const render = (() => {
+	addHeader();
 	const appContainer = document.createElement('main');
 	appContainer.classList.add('app-container');
 	document.body.appendChild(appContainer);

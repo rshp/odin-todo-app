@@ -1,0 +1,20 @@
+header {
+	background-color: #3498db;
+	color: #fff;
+	width: 60vw;
+	display: flex;
+	padding: 1rem;
+	box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
+header .header-icon svg {
+	height: 2rem;
+	cursor: pointer;
+}
+
+header .header-icon svg:hover {
+	color: rgb(162, 207, 255);
+}
